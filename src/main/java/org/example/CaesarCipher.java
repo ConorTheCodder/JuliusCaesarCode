@@ -1,3 +1,5 @@
+package org.example;
+
 public class CaesarCipher {
 
     private static final String ALPHABET =
