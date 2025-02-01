@@ -6,6 +6,9 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static org.example.ConsoleHelper.*;
 
@@ -23,14 +26,19 @@ public class BruteForce {
 
         CaesarCipher caesarCipher = new CaesarCipher();
 
-        try (BufferedReader reader = Files.newBufferedReader(Path.of(src));
-             BufferedWriter writer = Files.newBufferedWriter(dest)) {
-            String line = reader.readLine();
+        try (BufferedWriter writer = Files.newBufferedWriter(dest)) {
+
+            List<String> allStrings = Files.readAllLines(Path.of(src));
+
             for (int i = 0; i < caesarCipher.getAlphabetLength(); i++) {
-                String decrypted = caesarCipher.decrypt(line, i);
+                String decrypted = caesarCipher.decrypt(String.join("", allStrings), i);
                 if (isValidated(decrypted)) {
+                    for (String string : allStrings) {
+                        String decrypt = caesarCipher.decrypt(string, i);
+                        writer.write(decrypt);
+                        writer.newLine();
+                    }
                     writeMessage("Ключ найден: " + i);
-                    writer.write(decrypted);
                     break;
                 }
             }
