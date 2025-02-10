@@ -8,7 +8,7 @@ public class CaesarCipher {
                     "абвгдеёжзийклмнопрстуфхцчшщъыьэюя" +
                     "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ" +
                     ".,\":!? +-*/\\@#$%^&(){}[];'|`~=_©«»—" +
-                    "0123456789";
+                    "0123456789" + (char)10 + (char)13;
 
 
     public String encrypt(String message, int shiftKey) {

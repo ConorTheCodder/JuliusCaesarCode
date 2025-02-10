@@ -30,7 +30,8 @@ public class Menu {
                 BruteForce bruteForce = new BruteForce();
                 bruteForce.bruteForce();
             } else if (enterNumber == 4) {
-                System.out.println();
+                Parsing parsing = new Parsing();
+                parsing.parse();
             } else if (enterNumber == 5) {
                 break;
             }
